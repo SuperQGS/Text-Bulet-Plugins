@@ -103,5 +103,5 @@ plug.on('ready', () => {
 	// wood spike
 	bullet.emit('travelers', 'addGameItem', woodSpikeItemData.name, woodSpikeItemData);
 	bullet.emit('travelers', 'addStructureData', woodSpikeStructureData);
-	bullet.emit('travelers', 'addCraftableItem', woodSpikeItemData.name, 34);
+	bullet.emit('travelers', 'addCraftableItem', woodSpikeItemData.name, 29);
 });
