@@ -6,7 +6,9 @@ const MAX_FOOTSTEPS = 5000;
 const { chunks } = require('./bullet');
 const bullet = require('./bullet');
 const plugin = bullet.makePlugin('FootSteps');
-const footSteps = [];
+let footSteps = [];
+
+let tick = 0;
 
 /**
  * @param {bullet.players.player} player
@@ -55,9 +57,11 @@ function movePlayer(player) {
 }
 
 plugin.on('gameTick', () => {
+	tick++;
 	while(footSteps.length > MAX_FOOTSTEPS) {
 		footSteps.shift();
 	}
+	footSteps = footSteps.filter(footstep => !chunks.isObjectHere(footstep.x, footstep.y));
 }, -10);
 plugin.on('playerTick', playerTick, -10);
-plugin.on('travelers::movePlayer', movePlayer, -10);
+plugin.on('travelers::onPlayerStep', movePlayer, -10);
